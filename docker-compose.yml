@@ -1,10 +1,17 @@
 services:
   forx:
     build: .
-    container_name: forx-radio-club
     restart: unless-stopped
-    env_file: .env
+    environment:
+      # First admin login, created only when the database is empty
+      ADMIN_CALLSIGN: ${ADMIN_CALLSIGN:-WA0JXT}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
+      # 1 = login cookie only sent over HTTPS (served behind the reverse proxy)
+      COOKIE_SECURE: ${COOKIE_SECURE:-1}
+      CLUB_TZ: ${CLUB_TZ:-America/Chicago}
+      BACKUP_PASSPHRASE: ${BACKUP_PASSPHRASE:-}
     ports:
       - "${FORX_PORT:-8795}:8795"
     volumes:
-      - ./data:/app/data
+      # Members, events, nets and repeaters live in ./data/forx.db
+      - ./data:/data
