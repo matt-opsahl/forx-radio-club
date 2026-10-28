@@ -1,0 +1,10 @@
+services:
+  forx:
+    build: .
+    container_name: forx-radio-club
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "${FORX_PORT:-8795}:8795"
+    volumes:
+      - ./data:/app/data

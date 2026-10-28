@@ -1,0 +1,16 @@
+{
+  "name": "forx-radio-club",
+  "version": "0.1.0",
+  "private": true,
+  "description": "FORX Amateur Radio Club (WA0JXT) website with member login",
+  "type": "module",
+  "scripts": {
+    "start": "node server/server.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.3.0"
+  }
+}
